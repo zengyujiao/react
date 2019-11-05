@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="dem"></div>
+
+    <script src="../js/react.js"></script>
+    <script src="../js/react-dom.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script type = 'text/babel'>
+        let data = {
+            teacher:[
+                {name:'react',skill:['iop','css']},
+                {name:'reactdom',skill:['qwe','css']},
+                {name:'babel.min',skill:['ts']}
+            ],
+            items:[
+                <li key="1">1</li>,
+                <li key="2">2</li>,
+                <li key="3">3</li>
+            ],
+            mapTeacher({
+                teacher
+            }){
+                // 声明一个空数组用来存放循环遍历好的数据
+                let arr = []
+                for(let i = 0; i < teacher.length; i++) {
+                    arr.push(
+                        <option value = {teacher[i].name} key={i}>{teacher[i].name}</option>
+                    )
+                }
+                // 返回数组
+                return arr 
+            }
+        }
+        // react 和 vue 一样，只能有一个根节点
+        ReactDOM.render(
+            <div>
+                {/* 循环遍历数组 */}
+                <ul>{data.items}</ul>
+                <select>
+                    {data.teacher.map((item,index) => {
+                    return <option value={item.name} key={index}>{item.name}</option>
+                    })}
+                </select>
+                <select>{(({teacher}) => {
+                    let arr = []
+                    for(let i = 0; i < teacher.length; i++){
+                        arr.push(
+                            <option value={teacher[i].name} key={i}>{teacher[i].name}</option>
+                        )
+                    }
+                    return arr
+                })(data)}</select>
+                <select>{data.mapTeacher(data)}</select>
+            </div>,
+            document.querySelector('#dem')
+        )
+    </script>
+
+</body>
+
+</html>

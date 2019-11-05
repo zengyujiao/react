@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="dem"></div>
+    
+    <!-- 要先引用react.js,才能引用react-dom.js,如果先引用react-dom.js会报错 -->
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script>
+        // ReactDom.render(
+        //     // 这样会报错，因为react识别不了<
+        //     <h1>Hello,world</h1>,
+        //     document.getElementById("#dem")
+        // )
+        const h = React.createElement
+        const name = 'react'
+        // 生成一个描述DOM的对象
+        const jsx = h(
+            'div',{name:'abc'},
+            name,
+            h('p',null,'abc')
+        )
+        console.log(jsx)
+        // 把虚拟DOM对象转为真实DOM
+        ReactDOM.render(
+            // 把对象直接写在这里
+            jsx,
+            // 如果用getElementById选择器的话，会报错，需要用querySelector选择器
+            document.querySelector('#dem')
+        )
+    </script>
+</body>
+</html>

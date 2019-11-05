@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="dem"></div>
+    
+    <script src="../js/react.js"></script>
+    <script src="../js/react-dom.js"></script>
+    <!-- 这个文件会隐式转换为虚拟DON -->
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <!-- 这个script标签身上必须添加type = 'text/babel' ，如果只添加了babel.min.js文件，没有添加type = 'text/babel' 的话，一样会报错，需要两个一起添加-->
+   <script type = 'text/babel'>
+        ReactDOM.render(
+            <div>Hello</div>,
+            document.querySelector('#dem')
+            
+        )
+   </script>
+</body>
+</html>

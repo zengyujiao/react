@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="dem"></div>
+    
+    <script src="../js/react.js"></script>
+    <script src="../js/react-dom.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script type = 'text/babel'>
+        let data = {
+            bool:!0,
+            num:2
+        }
+        const Vif = ((num,data) => {
+            switch (num) {
+                case 1:
+                    return '数字为1'
+                    break;
+                case 2:
+                    return '数字为2'
+                    break;
+                default:
+                    return '为其它数字'
+            }
+        })
+        ReactDOM.render(
+            <div>
+                <div>{data.bool ? '真' : '假'}</div>
+                <div>{((bool) => {
+                    if(bool){
+                        return '为真'
+                    }else{
+                        return '为假'
+                    }
+                })(data)}</div>
+                <div>{Vif(data)}</div>
+                <Vif data={data}></Vif>
+            </div>,
+            document.querySelector('#dem')
+        )
+    </script>
+</body>
+</html>

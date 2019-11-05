@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo"></div>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script type="text/babel">
+        // 声明一个函数，第一个字母大写
+        let Component1 = (props) => {
+            console.log(props)
+            let data = {
+                title:'组件'
+            }
+            return <div>{data.title}</div>
+        }
+        ReactDOM.render(
+            <div>
+                {/* 这两种写法是一样的 */}
+                {Component1({name:'iop'})}
+                {/* 建议用下面这种自定义标签的写法，所有组件的本质其实是构造函数 */}
+                {/* 如果用下面这种写法，它支持用props完成父子通信，相当于props */}
+                <Component1 data={{name:'react'}} skill={['a','b','z']} tag="8"/>
+            </div>,
+            document.querySelector('#demo')
+        )
+    </script>
+</body>
+</html>

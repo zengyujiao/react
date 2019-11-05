@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding:0}
+        header{
+            height:100px;
+            width:100%;
+            text-align: center;
+            line-height: 100px;
+            color:#fff;
+            background:cornflowerblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="demo"></div>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script type="text/babel">
+        class Component1 extends React.Component {
+            constructor(props){
+                super(props)
+                // state组件状态，组件的私有数据view，state相当于data
+                this.state = {
+                    title:"微信"
+                }
+            }
+            render(){
+                return (
+                    <header>{this.state.title}</header>
+                )
+            }
+        }
+        ReactDOM.render(
+            <div>
+                <Component1 />
+            </div>,
+            document.querySelector('#demo')
+        )
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding:0}
+        .header{
+            height:50px;
+            width:100%;
+            background-color:darkred;
+            text-align: center;
+            line-height: 50px;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="demo"></div>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script type="text/babel">
+        // React.Component是所有组件的父组件，需要用class声明，所有某些时候我们可以改变React.Component模块去改变所有基于它衍生的组件
+        class Component1 extends React.Component {
+            constructor(props){
+                super(props);
+                // props其实是放在this.props身上的，this.props = props这句可以省略不写
+            }
+            render(){
+                return (
+                    <header class="header" style={{backgroundColor:this.props.color}}>{this.props.name}</header>
+                )
+            }
+        }
+        ReactDOM.render(
+            <div>
+                <Component1 name="react" color="red" />
+            </div>,
+            document.querySelector('#demo')
+        )
+    </script>
+</body>
+</html>

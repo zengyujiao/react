@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo"></div>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script type="text/babel">
+        let data = {
+            name:'hello',
+            style:{
+                color:'red',
+                fontSize:'30px'
+            },
+            arr:['a','b','c']
+        }
+        let methods = {
+            renderName({name}){
+                return name
+            }
+        }
+        ReactDOM.render(
+            <div>
+                {/* 直接渲染到标签身上 */}
+                <div>{data.name}</div>
+                {/* 以函数的形式渲染到标签身上 */}
+                <div>{(({name}) => {
+                    return name
+                })(data)}</div>
+                <div>{methods.renderName(data)}</div>
+                {/* 以三元运算符的形式判断 */}
+                <div>{data.name.length > 3 ? '真的' : '假的'}</div>
+                {/* 以二元运算符 */}
+                <div>{data.name.length + 1}</div>
+                {/* 以一元运算符 */}
+                <div>{-data.name.length}</div>
+                {/* 支持扩展属性 */}
+                <div name = 'abc' name1 = {data.name} name2 = {methods.renderName(data)}>属性</div>
+                
+                <div style={data.style}>属性</div>
+                <div style={{
+                    color:'red',
+                    fontSize:'20px'
+                }}>属性</div>
+                {/* class属性不能用，需要用className ,因为可以会重名*/}
+                <div className={data.name.length>3?'abc':'zxc'}>属性</div>
+
+                <div>{data.arr}</div>
+                <div>{data.arr.map((item,index) => {
+                    return <li key={index}>{item}</li>
+                })}</div>
+                {/* label标签身上的 for属性在react里面不能用，需要用htmlFor ,因为可以会重名*/}
+                {/* <label htmlFor /> */}
+            </div>,
+            document.querySelector('#demo')
+        )
+
+        {/* class和for属性在react不能用，需要用className和htmlFor,因为可以会重名*/}
+    </script>
+</body>
+</html>
