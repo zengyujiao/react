@@ -29,17 +29,22 @@
             <div>
                 {/* 直接渲染到标签身上 */}
                 <div>{data.name}</div>
+
                 {/* 以函数的形式渲染到标签身上 */}
                 <div>{(({name}) => {
                     return name
                 })(data)}</div>
                 <div>{methods.renderName(data)}</div>
+
                 {/* 以三元运算符的形式判断 */}
                 <div>{data.name.length > 3 ? '真的' : '假的'}</div>
+
                 {/* 以二元运算符 */}
                 <div>{data.name.length + 1}</div>
+
                 {/* 以一元运算符 */}
                 <div>{-data.name.length}</div>
+                
                 {/* 支持扩展属性 */}
                 <div name = 'abc' name1 = {data.name} name2 = {methods.renderName(data)}>属性</div>
                 
