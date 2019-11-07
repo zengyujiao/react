@@ -1,0 +1,50 @@
+<template name='Panel'>
+    <div className="weui-panel weui-panel_access">
+        <div className="weui-panel__hd">{this.state.searchText}</div>
+        <div className="weui-panel__bd">
+            <!-- 直接在这里调用 -->
+            <News news={this.state.news} searchText={this.state.searchText} />
+        </div>
+        <div className="weui-panel__ft">
+            <a className="weui-cell weui-cell_access weui-cell_link">
+                <div className="weui-cell__bd">查看更多</div>
+                <span className="weui-cell__ft"></span>
+            </a>
+        </div>
+    </div>
+</template>
+<script>
+    import axios from 'axios'
+    import News from './News'
+    import store from '../../stores'
+    export default class {
+        constructor(props) {
+            super(props)
+            this.state = {
+                // 声明一个空数组来接收数据
+                news: [],
+                searchText:''
+            }
+        }
+        // 在这里执行
+        componentDidMount() {
+            this.loadMore()
+            // 监听store的变化，拿到现在的创库，取出来
+            store.subscribe(() => {
+                let state = store.getState()
+                this.setState({
+                    searchText:state.searchText
+                })
+            })
+        }
+        // 同步
+        async loadMore() {
+            let data = await axios.get("https://cnodejs.org/api/v1/topics")
+            console.log(data)
+            this.setState({
+                // 拿到数据赋值给 news 数组
+                news: data.data.data
+            })
+        }
+    }
+</script>
